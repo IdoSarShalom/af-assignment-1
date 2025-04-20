@@ -3,29 +3,43 @@ import pandas as pd
 
 # The function initializes and returns open
 def init_open():
-    raise NotImplementedError
+    return []
 
 # The function inserts s into open
 def insert_to_open(open_list, s):  # Should be implemented according to the open list data structure
-    raise NotImplementedError
+    open_list.append(s)
 
 # The function returns the best node in open (according to the search algorithm)
 def get_best(open_list):
-    raise NotImplementedError
+    return open_list.pop(0)
 
 # The function returns the neighboring locations of s_location
 def get_neighbors(grid, s_location):
+    """Returns the neighboring locations of s_location in the grid."""
+    rows, cols = len(grid), len(grid[0])
+    row, col = s_location
     neighbors = []
-    raise NotImplementedError
+
+    # Possible directions: up, right, down, left
+    directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
+    for dr, dc in directions:
+        new_row, new_col = row + dr, col + dc
+        # Check if the new position is within bounds
+        if 0 <= new_row < rows and 0 <= new_col < cols:
+            # Check if the position is not a wall (assuming '.' is an open path)
+            if grid[new_row][new_col] == '.':
+                neighbors.append((new_row, new_col))
+
     return neighbors
 
 # The function returns True if s_location is the goal location and False otherwise
 def is_goal(s_location, goal_location):
-    raise NotImplementedError
+    return s_location == goal_location
 
 # The function returns True if open_list is empty and False otherwise
 def is_empty(open_list):
-    raise NotImplementedError
+    return not open_list
 
 
 # Locations are tuples of (x, y)
