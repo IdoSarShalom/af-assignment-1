@@ -1,5 +1,6 @@
-import pandas as pd
 from collections import deque
+
+import pandas as pd
 
 
 # The function initializes and returns open
@@ -24,13 +25,9 @@ def get_neighbors(grid, s_location):
     neighbors = []
     directions = [
         (-1, 0),  # up
-        (0, 1),   # right
-        (1, 0),   # down
+        (0, 1),  # right
+        (1, 0),  # down
         (0, -1),  # left
-        (-1, -1), # up-left
-        (-1, 1),  # up-right
-        (1, 1),   # down-right
-        (1, -1)   # down-left
     ]
     for dr, dc in directions:
         new_row, new_col = row + dr, col + dc
