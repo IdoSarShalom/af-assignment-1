@@ -19,8 +19,25 @@ def get_best(open_list):
 
 # The function returns the neighboring locations of s_location
 def get_neighbors(grid, s_location):
+    rows, cols = grid.shape[0], grid.shape[1]
+    row, col = s_location
     neighbors = []
-    raise NotImplementedError
+    directions = [
+        (-1, 0),  # up
+        (0, 1),   # right
+        (1, 0),   # down
+        (0, -1),  # left
+        (-1, -1), # up-left
+        (-1, 1),  # up-right
+        (1, 1),   # down-right
+        (1, -1)   # down-left
+    ]
+    for dr, dc in directions:
+        new_row, new_col = row + dr, col + dc
+        if 0 <= new_row < rows and 0 <= new_col < cols:
+            cell = str(grid[new_row, new_col])
+            if cell == '.':
+                neighbors.append((new_row, new_col))
     return neighbors
 
 
