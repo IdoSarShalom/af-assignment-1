@@ -1,17 +1,21 @@
 import pandas as pd
+from collections import deque
 
 
 # The function initializes and returns open
 def init_open():
-    raise NotImplementedError
+    return deque()
+
 
 # The function inserts s into open
 def insert_to_open(open_list, s):  # Should be implemented according to the open list data structure
-    raise NotImplementedError
+    open_list.append(s)
+
 
 # The function returns the best node in open (according to the search algorithm)
 def get_best(open_list):
-    raise NotImplementedError
+    return open_list.popleft()
+
 
 # The function returns the neighboring locations of s_location
 def get_neighbors(grid, s_location):
@@ -19,13 +23,15 @@ def get_neighbors(grid, s_location):
     raise NotImplementedError
     return neighbors
 
+
 # The function returns True if s_location is the goal location and False otherwise
 def is_goal(s_location, goal_location):
-    raise NotImplementedError
+    return s_location == goal_location
+
 
 # The function returns True if open_list is empty and False otherwise
 def is_empty(open_list):
-    raise NotImplementedError
+    return not open_list
 
 
 # Locations are tuples of (x, y)
@@ -55,10 +61,12 @@ def bfs(grid, start_location, goal_location):
             insert_to_open(open_list, n)
         closed_list.add(s_location)
 
+
 def print_route(s):
     while s:
         print(s[0], s[1])
         s = s[3]
+
 
 def get_route(s):
     route = []
@@ -68,6 +76,7 @@ def get_route(s):
         s = s[2]
     route.reverse()
     return route
+
 
 def print_grid_route(route, grid):
     for location in route:
