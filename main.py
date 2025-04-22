@@ -1,8 +1,9 @@
+import copy
+import time
+
 import a_star_search as astar
 import breadth_first_search as bfs
 from route_grid import create_grid
-import time
-import copy
 
 ROUTE_LEN_1 = 39
 ROUTE_LEN_2 = 291
@@ -11,7 +12,6 @@ ROUTE_LEN_2 = 291
 def grid_test(test_num=1, print_route=False):
     grid, start_location, end_location = create_grid(test_num)
 
-
     print("--- BFS solver ---")
     start_time = time.time()
     s_bfs = bfs.bfs(grid, start_location, end_location)
@@ -19,6 +19,7 @@ def grid_test(test_num=1, print_route=False):
     print("Route length: ", len(b_route))
     tot2 = round(time.time() - start_time, 4)
     print("Running time:", tot2)
+
     if print_route:
         print("BFS route: ")
         bfs.print_grid_route(b_route, copy.copy(grid))
@@ -30,10 +31,10 @@ def grid_test(test_num=1, print_route=False):
     print("Route length:", len(a_route))
     tot1 = round(time.time() - start_time, 4)
     print("Running time:", tot1)
+
     if print_route:
         print("AStar route: ")
         astar.print_grid_route(a_route, copy.copy(grid))
-
 
     if len(b_route) == len(a_route):
         if test_num == 1:
@@ -47,6 +48,7 @@ def grid_test(test_num=1, print_route=False):
                     print("Running time is too high for AStar")
                     return False
     return False
+
 
 print("------------------ Test 1 ------------------")
 print("Testing the search algorithms on first problem instance (running time may not be better for AStar Search):")
